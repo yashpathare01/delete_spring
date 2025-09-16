@@ -1,0 +1,25 @@
+
+
+<html>
+	<head>
+		
+	</head>
+	
+	<body>
+		
+		<c:if test="${not empty successMsg}" >
+					<h4>${successMsg}</h4>
+				</c:if>
+				
+				<c:if test="${not empty errorMsg}" >
+							<h4>${errorMsg}</h4>
+						</c:if>
+		
+		<form action="registerForm" method="post" >
+					Name   : <input type="text" name="name" /><br/><br/>
+					Rollno : <input type="text" name="rollno" /><br/><br/>
+							<input type="submit" value="Submit"/>
+					</form>
+	</body>
+	
+</html>

@@ -1,6 +1,10 @@
 package com.yash.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,15 +12,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yash.entity.Student;
 import com.yash.service.StudentServive;
 
-@RestController
+@Controller
 public class StudentController 
 {
 	@Autowired
 	private StudentServive servive;
 	
-	@PostMapping("/student/add")
-	public Student addStudent(@RequestBody Student stu)
+	@GetMapping("/RegisterPage")
+	public String openRegisterPage(Model model)
 	{
-		return servive.addStudent(stu);
+		model.addAttribute("stud", new Student());
+		return "register";
+	}
+	
+	@PostMapping("/registerForm")
+	public String addStudent(@ModelAttribute("stud") Student stud, Model model)
+	{
+		Student std = servive.addStudent(stud);
+		
+		if(std != null)
+		{
+			model.addAttribute("successMsg", "Registration Succesfull");
+			return "login";
+		}
+		else
+		{
+			model.addAttribute("errorMsg","Registration Unsuccesfull" );
+			return "register";
+		}
 	}
 }

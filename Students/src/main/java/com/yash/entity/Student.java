@@ -15,6 +15,14 @@ public class Student
 	private int rollno;
 	
 	
+	public Student() {
+		
+		this.id = id;
+		this.name = name;
+		this.rollno = rollno;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
