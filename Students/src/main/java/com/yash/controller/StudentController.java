@@ -32,7 +32,10 @@ public class StudentController
 		
 		if(std != null)
 		{
+			int count = 0;
 			model.addAttribute("successMsg", "Registration Succesfull");
+			count++;
+			System.out.println("Total Students = "+count);
 			return "login";
 		}
 		else
@@ -40,5 +43,7 @@ public class StudentController
 			model.addAttribute("errorMsg","Registration Unsuccesfull" );
 			return "register";
 		}
+		
+		
 	}
 }
